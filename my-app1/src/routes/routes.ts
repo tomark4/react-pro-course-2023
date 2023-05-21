@@ -1,19 +1,25 @@
-import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
+import React, { lazy } from "react";
+
+type JSXComponent = () => JSX.Element;
 
 export interface RouteI {
   to: string;
   path: string;
-  Component: () => JSX.Element;
+  component: React.LazyExoticComponent<JSXComponent> | JSXComponent;
   name: string;
 }
 
+const Lazy1 = lazy(() => import("../01-lazyload/pages/LazyPage1"));
+const Lazy2 = lazy(() => import("../01-lazyload/pages/LazyPage2"));
+const Lazy3 = lazy(() => import("../01-lazyload/pages/LazyPage3"));
+
 export const routes: RouteI[] = [
-  { to: "/lazy1", path: "lazy1", Component: LazyPage1, name: "Lazy page one" },
-  { to: "/lazy2", path: "lazy2", Component: LazyPage2, name: "Lazy page two" },
+  { to: "/lazy1", path: "lazy1", component: Lazy1, name: "Lazy page one" },
+  { to: "/lazy2", path: "lazy2", component: Lazy2, name: "Lazy page two" },
   {
     to: "/lazy3",
     path: "lazy3",
-    Component: LazyPage3,
+    component: Lazy3,
     name: "Lazy page Three",
   },
 ];
