@@ -1,4 +1,10 @@
-import { ProductCard } from "../components";
+import {
+  ProductButtons,
+  ProductCard,
+  ProductImage,
+  ProductTitle,
+} from "../components";
+import "../styles/custom-styles.css";
 
 const products = [
   { id: "1", title: "Coffe mug card 1", img: "coffee-mug.png" },
@@ -12,10 +18,22 @@ const ShoppingPage = () => {
       <hr />
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {products.map((item) => (
-          <ProductCard product={item} key={item.id}>
-            <ProductCard.Image />
-            <ProductCard.Title />
-            <ProductCard.Buttons />
+          <ProductCard product={item} key={item.id} className="bg-dark">
+            <ProductCard.Image className="custom-image" />
+            <ProductCard.Title className="text-white text-bold" />
+            <ProductCard.Buttons className="custom-buttons" />
+          </ProductCard>
+        ))}
+
+        {products.map((item) => (
+          <ProductCard
+            product={item}
+            key={item.id}
+            className="bg-dark text-white"
+          >
+            <ProductImage className="custom-image" />
+            <ProductTitle className="text-white text-bold" />
+            <ProductButtons className="custom-buttons" />
           </ProductCard>
         ))}
       </div>
