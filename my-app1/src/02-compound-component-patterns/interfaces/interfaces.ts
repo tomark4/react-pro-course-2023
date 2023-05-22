@@ -1,7 +1,7 @@
-import { Props as ProductCardProps } from "../components/ProductCard";
-import { Props as ProductTitleProps } from "../components/ProductTitle";
-import { Props as ProductImageProps } from "../components/ProductImage";
-import { Props as ProductButtonsProps } from "../components/ProductButtons";
+import { Props as ProductCardPropsI } from "../components/ProductCard";
+import { Props as ProductTitlePropsI } from "../components/ProductTitle";
+import { Props as ProductImagePropsI } from "../components/ProductImage";
+import { Props as ProductButtonsPropsI } from "../components/ProductButtons";
 
 export interface ProductI {
   id: string;
@@ -16,8 +16,8 @@ export interface ProductContextPropsI {
 }
 
 export interface ProductCardI {
-  (Props: ProductCardProps): JSX.Element;
-  Title: (Props: ProductTitleProps) => JSX.Element;
-  Image: (Props: ProductImageProps) => JSX.Element;
-  Buttons: (Props: ProductButtonsProps) => JSX.Element;
+  (Props: ProductCardPropsI): JSX.Element;
+  Title: (Props: ProductTitlePropsI) => JSX.Element;
+  Image: (Props: ProductImagePropsI) => JSX.Element;
+  Buttons: (Props: ProductButtonsPropsI) => JSX.Element;
 }

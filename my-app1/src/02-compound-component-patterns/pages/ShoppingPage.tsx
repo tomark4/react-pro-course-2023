@@ -18,10 +18,18 @@ const ShoppingPage = () => {
       <hr />
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {products.map((item) => (
-          <ProductCard product={item} key={item.id} className="bg-dark">
+          <ProductCard
+            product={item}
+            key={item.id}
+            className="bg-dark"
+            style={{ backgroundColor: "#787878" }}
+          >
             <ProductCard.Image className="custom-image" />
             <ProductCard.Title className="text-white text-bold" />
-            <ProductCard.Buttons className="custom-buttons" />
+            <ProductCard.Buttons
+              className="custom-buttons"
+              btnStyle={{ background: "green", color: "yellow" }}
+            />
           </ProductCard>
         ))}
 
