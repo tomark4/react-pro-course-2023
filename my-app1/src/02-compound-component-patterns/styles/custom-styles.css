@@ -27,3 +27,9 @@
   background-color: lightcoral;
   color: white;
 }
+
+.shopping-cart {
+  position: fixed;
+  top: 0;
+  right: 10px;
+}

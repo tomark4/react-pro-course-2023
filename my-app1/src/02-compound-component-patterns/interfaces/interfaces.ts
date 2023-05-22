@@ -21,3 +21,8 @@ export interface ProductCardI {
   Image: (Props: ProductImagePropsI) => JSX.Element;
   Buttons: (Props: ProductButtonsPropsI) => JSX.Element;
 }
+
+export interface OnChangeArgs {
+  product: ProductI;
+  qty: number;
+}
