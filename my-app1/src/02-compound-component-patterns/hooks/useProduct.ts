@@ -16,8 +16,8 @@ const useProduct = ({ product, onChange, value = 0 }: UseProductArgs) => {
   }, [value]);
 
   const increaseBy = (value: number) => {
-    if (isControlled) {
-      return onChange!({ qty: value, product });
+    if (isControlled && onChange) {
+      return onChange({ qty: value, product });
     }
     const newValue = Math.max(counter + value, 0);
     setCounter(newValue);
