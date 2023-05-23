@@ -9,6 +9,10 @@ export interface ProductI {
   img?: string;
 }
 
+export interface ProductInCartI extends ProductI {
+  qty: number;
+}
+
 export interface ProductContextPropsI {
   counter: number;
   product: ProductI;
