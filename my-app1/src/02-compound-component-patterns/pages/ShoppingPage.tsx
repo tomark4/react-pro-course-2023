@@ -6,10 +6,15 @@ import {
 } from "../components";
 import "../styles/custom-styles.css";
 import { useShoppingCartPage } from "../hooks/";
-import { products } from "../data/products";
+import useProducts from "../hooks/useProducts";
 
 const ShoppingPage = () => {
   const { shoppingCart, onProductCountChange } = useShoppingCartPage();
+  const { loading, products } = useProducts();
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div>
