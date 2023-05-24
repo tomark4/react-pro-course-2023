@@ -44,7 +44,17 @@ const useProduct = ({
     onChange && onChange({ product, qty: newValue });
   };
 
-  return { counter, increaseBy };
+  const reset = () => {
+    setCounter(initialValues?.qty || value || 0);
+  };
+
+  return {
+    counter,
+    isMaxCountReached:
+      !!initialValues?.maxCount && initialValues.maxCount === counter,
+    reset,
+    increaseBy,
+  };
 };
 
 export default useProduct;

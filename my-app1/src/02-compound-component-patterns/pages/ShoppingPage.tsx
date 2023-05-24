@@ -22,9 +22,50 @@ const ShoppingPage = () => {
           className="bg-dark text-white"
           initialValues={{ qty: 4, maxCount: 10 }}
         >
-          <ProductImage className="custom-image" />
-          <ProductTitle className="text-white text-bold" />
-          <ProductButtons className="custom-buttons" />
+          {({ count, isMaxCountReached, increaseBy, reset }) => (
+            <>
+              <ProductImage className="custom-image" />
+              <ProductTitle className="text-white text-bold" />
+              <ProductButtons className="custom-buttons" />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
+                  onClick={reset}
+                  style={{
+                    backgroundColor: "white",
+                    height: "40px",
+                    width: "100px",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "4px",
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "10px 0",
+                }}
+              >
+                {count > 0 && (
+                  <button onClick={() => increaseBy(-2)}>-2</button>
+                )}
+                {!isMaxCountReached && (
+                  <button
+                    onClick={() => increaseBy(+2)}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    +2
+                  </button>
+                )}
+              </div>
+              <div>
+                <span style={{ textAlign: "center" }}>Count: {count}</span>
+              </div>
+            </>
+          )}
         </ProductCard>
       </div>
     </div>
