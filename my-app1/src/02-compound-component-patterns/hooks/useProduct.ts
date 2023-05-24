@@ -37,6 +37,9 @@ const useProduct = ({
       return onChange({ qty: value, product });
     }
     const newValue = Math.max(counter + value, 0);
+
+    if (initialValues?.maxCount && newValue > initialValues?.maxCount) return;
+
     setCounter(newValue);
     onChange && onChange({ product, qty: newValue });
   };
