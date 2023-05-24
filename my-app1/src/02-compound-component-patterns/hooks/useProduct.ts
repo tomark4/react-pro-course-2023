@@ -1,17 +1,34 @@
 import { useEffect, useRef, useState } from "react";
-import { OnChangeArgs, ProductI } from "../interfaces/interfaces";
+import {
+  InitialValueI,
+  OnChangeArgs,
+  ProductI,
+} from "../interfaces/interfaces";
 
 interface UseProductArgs {
   product: ProductI;
   value?: number;
+  initialValues?: InitialValueI;
   onChange?: (args: OnChangeArgs) => void;
 }
 
-const useProduct = ({ product, onChange, value = 0 }: UseProductArgs) => {
-  const [counter, setCounter] = useState(0);
+const useProduct = ({
+  product,
+  onChange,
+  value = 0,
+  initialValues,
+}: UseProductArgs) => {
+  const [counter, setCounter] = useState<number>(initialValues?.qty || value);
   const isControlled = useRef(!!onChange);
+  const isMounted = useRef(false);
 
   useEffect(() => {
+    isMounted.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (isMounted.current) return;
+
     setCounter(value);
   }, [value]);
 

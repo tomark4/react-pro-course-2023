@@ -30,3 +30,8 @@ export interface OnChangeArgs {
   product: ProductI;
   qty: number;
 }
+
+export interface InitialValueI {
+  qty?: number;
+  maxCount?: number;
+}

@@ -20,6 +20,7 @@ const ShoppingPage = () => {
           product={product}
           key={product.id}
           className="bg-dark text-white"
+          initialValues={{ qty: 4, maxCount: 10 }}
         >
           <ProductImage className="custom-image" />
           <ProductTitle className="text-white text-bold" />
