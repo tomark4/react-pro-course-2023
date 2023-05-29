@@ -9,6 +9,7 @@ select {
   margin-top: 5px;
   outline: none;
   padding: 10px;
+  margin-top: 10px 0;
 }
 
 button {
@@ -19,6 +20,8 @@ button {
 span,
 .error-message {
   color: red;
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .has-error {
