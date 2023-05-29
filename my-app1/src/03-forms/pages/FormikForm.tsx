@@ -13,7 +13,7 @@ const isValidEmail = (email: string) => {
 };
 
 const FormikForm = () => {
-  const initData = {
+  const initialValues = {
     name: "Jose",
     lastName: "Quintero",
     email: "jose.quintero@gmail.com",
@@ -47,21 +47,21 @@ const FormikForm = () => {
     values: { name, lastName, email },
     errors,
     touched,
+    isValid,
     handleChange,
     handleBlur,
     handleSubmit,
   } = useFormik({
-    initialValues: initData,
+    initialValues,
+    validate,
     onSubmit: async (values) => {
       console.log(values);
     },
-    validate,
   });
 
   return (
     <>
       <h1>Formik basic tutorial</h1>
-      {console.log(errors)}
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor="name">First name</label>
         <input
@@ -99,7 +99,9 @@ const FormikForm = () => {
         />
         {touched.email && errors.email && <span>{errors.email}</span>}
 
-        <button type="submit">Store user</button>
+        <button type="submit" disabled={!isValid}>
+          Store user
+        </button>
       </form>
     </>
   );
