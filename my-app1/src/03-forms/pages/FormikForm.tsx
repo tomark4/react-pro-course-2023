@@ -13,7 +13,7 @@ const isValidEmail = (email: string) => {
 };
 
 const FormikForm = () => {
-  const initialValues = {
+  const initialValues: FormValues = {
     name: "Jose",
     lastName: "Quintero",
     email: "jose.quintero@gmail.com",
