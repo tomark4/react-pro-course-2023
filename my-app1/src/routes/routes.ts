@@ -1,5 +1,6 @@
 import React from "react";
 import { ShoppingPage } from "../02-compound-component-patterns/pages";
+import { FormsPage } from "../03-forms/pages/";
 
 type JSXComponent = () => JSX.Element;
 
@@ -16,6 +17,12 @@ export const routes: RouteI[] = [
     path: "/shop",
     component: ShoppingPage,
     name: "store",
+  },
+  {
+    to: "/forms",
+    path: "/forms",
+    component: FormsPage,
+    name: "forms",
   },
 ];
 
