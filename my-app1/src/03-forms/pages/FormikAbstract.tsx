@@ -1,5 +1,7 @@
-import { Formik, ErrorMessage, Field, Form } from "formik";
 import * as Yup from "yup";
+import { Formik, Form } from "formik";
+import { Checkbox, Select, TextInput } from "../components";
+
 import "../styles/styles.css";
 
 interface FormValues {
@@ -20,7 +22,7 @@ const validationSchema = Yup.object().shape({
   terms: Yup.boolean().oneOf([true], "Must accept terms and condition"),
 });
 
-const FormikComponent = () => {
+const FormikAbstract = () => {
   const initialValues: FormValues = {
     name: "Jose",
     lastName: "Quintero",
@@ -31,7 +33,7 @@ const FormikComponent = () => {
 
   return (
     <>
-      <h1>Formik basic tutorial</h1>
+      <h1>Formik Abstract tutorial</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -39,36 +41,29 @@ const FormikComponent = () => {
       >
         {({ isValid }) => (
           <Form noValidate>
-            <label htmlFor="name">First name</label>
-            <Field name="name" type="text" placeholder="Name" />
-            <ErrorMessage name="name" component="span" />
+            <TextInput name="name" label="Name" placeholder="Name" />
 
-            <label htmlFor="lastName">Last name</label>
-            <Field name="lastName" type="text" />
-            <ErrorMessage name="lastName" component="span" />
+            <TextInput
+              name="lastName"
+              label="Last name"
+              placeholder="Last name"
+            />
 
-            <label htmlFor="email">Email</label>
-            <Field name="email" type="email" />
-            <ErrorMessage name="email" component="span" />
+            <TextInput
+              name="email"
+              label="Email"
+              type="email"
+              placeholder="Email"
+            />
 
-            <label htmlFor="job">Job</label>
-            <Field name="job" as="select">
+            <Select name="job" label="Job">
               <option value="">Choose job</option>
               <option value="developer">Developer</option>
               <option value="marketing">Marketing</option>
               <option value="manager">Manager</option>
-            </Field>
-            <ErrorMessage name="job" component="span" />
+            </Select>
 
-            <div style={{ marginTop: "20px" }}>
-              <label htmlFor="terms">
-                <Field name="terms" type="checkbox" />
-                Accept terms and condition
-              </label>
-              <div>
-                <ErrorMessage name="terms" component="span" />
-              </div>
-            </div>
+            <Checkbox label="Accept terms & condition" name="terms" />
 
             <button type="submit" disabled={!isValid}>
               Store user
@@ -80,4 +75,4 @@ const FormikComponent = () => {
   );
 };
 
-export default FormikComponent;
+export default FormikAbstract;

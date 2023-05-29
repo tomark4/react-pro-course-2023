@@ -2,7 +2,8 @@ import "../styles/styles.css";
 // import { BasicForm } from "./";
 // import { FormikForm } from "./";
 // import { FormikMediumForm } from "./";
-import { FormikComponent } from "./";
+// import { FormikComponent } from "./";
+import { FormikAbstract } from "./";
 
 const FormsPage = () => {
   return (
@@ -10,7 +11,8 @@ const FormsPage = () => {
       {/* <BasicForm /> */}
       {/* <FormikForm /> */}
       {/* <FormikMediumForm /> */}
-      <FormikComponent />
+      {/* <FormikComponent /> */}
+      <FormikAbstract />
     </div>
   );
 };
