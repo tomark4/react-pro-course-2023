@@ -1,6 +1,7 @@
 import React from "react";
 import { ShoppingPage } from "../02-compound-component-patterns/pages";
 import { FormsPage } from "../03-forms/pages/";
+import DinamicFormPage from "../04-dinamic-form/DinamicFormPage";
 
 type JSXComponent = () => JSX.Element;
 
@@ -23,6 +24,12 @@ export const routes: RouteI[] = [
     path: "/forms",
     component: FormsPage,
     name: "forms",
+  },
+  {
+    to: "/forms-dinamic",
+    path: "/forms-dinamic",
+    component: DinamicFormPage,
+    name: "forms-dinamic",
   },
 ];
 
