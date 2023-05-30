@@ -1,0 +1,47 @@
+[
+  {
+    "id": "name",
+    "name": "name",
+    "placeholder": "Jhon Doe",
+    "label": "Name",
+    "value": "Jhon doe",
+    "type": "text",
+    "validations": [{ "type": "required" }, { "type": "minLength", "value": 5 }]
+  },
+  {
+    "id": "email",
+    "name": "email",
+    "placeholder": "jhon.doe@gmail.com",
+    "label": "Email",
+    "value": "",
+    "type": "email",
+    "validations": [{ "type": "required" }, { "type": "email" }]
+  },
+  {
+    "id": "password",
+    "name": "password",
+    "placeholder": "Your password",
+    "label": "Password",
+    "value": "",
+    "type": "password"
+  },
+  {
+    "id": "passwordCopy",
+    "name": "passwordCopy",
+    "placeholder": "Repeat password",
+    "label": "Confirm password",
+    "value": "",
+    "type": "password"
+  },
+  {
+    "id": "country",
+    "name": "country",
+    "label": "Country",
+    "value": "",
+    "type": "select",
+    "options": [
+      { "id": "1", "label": "venezuela" },
+      { "id": "2", "label": "colombia" }
+    ]
+  }
+]

@@ -1,60 +1,75 @@
 import { Form, Formik } from "formik";
 import * as yup from "yup";
-import { TextField } from "./components/";
+import { Select, TextField } from "./components/";
+import formJson from "./data/form.json";
 
-const validationSchema = yup.object().shape({
-  name: yup.string().required().max(15).min(2),
-  email: yup.string().required().email(),
-  password: yup.string().required().min(6),
-  passwordConfirm: yup
-    .string()
-    .required()
-    .min(6)
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
+const initialValues: { [x: string]: any } = {};
+const requiredFields: { [x: string]: any } = {};
+
+for (const input of formJson) {
+  initialValues[input.name] = input.value;
+
+  if (!input.validations) continue;
+
+  let schema = yup.string();
+
+  for (const rule of input.validations) {
+    if (rule.type === "required") {
+      schema = schema.required("Field is required");
+    }
+
+    if (rule.type === "minLength") {
+      schema = schema.min(
+        rule.value as number,
+        `Min length must be ${rule.value} char at least`
+      );
+    }
+
+    if (rule.type === "email") {
+      schema = schema.email("Enter valid email");
+    }
+    // other rules here...
+  }
+
+  requiredFields[input.name] = schema;
+}
+
+const validationSchema = yup.object().shape({ ...requiredFields });
 
 const DinamicFormPage = () => {
   return (
     <div className="container mt-5">
+      <h1>Dinamic form</h1>
+      <hr />
       <Formik
-        initialValues={{
-          name: "",
-          email: "",
-          password: "",
-          passwordConfirm: "",
-        }}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => console.log(values)}
       >
         {({ isValid, handleReset }) => (
-          <Form>
-            <div className="mb-3">
-              <TextField name="name" label="Name" placeholder="Jhon doe" />
-            </div>
-            <div className="mb-3">
-              <TextField
-                name="email"
-                type="email"
-                label="Name"
-                placeholder="jhon.doe@microsoft.com"
-              />
-            </div>
-            <div className="mb-3">
-              <TextField
-                name="password"
-                type="password"
-                label="Password"
-                placeholder="Password"
-              />
-            </div>
-            <div className="mb-3">
-              <TextField
-                name="passwordConfirm"
-                type="password"
-                label="Password confirm"
-                placeholder="Confirm password"
-              />
-            </div>
+          <Form noValidate>
+            {formJson.map((field) => {
+              if (field.type === "select") {
+                return (
+                  <Select name={field.name} label={field.label} key={field.id}>
+                    <option value="">Select option</option>
+                    {field.options?.map(({ id, label }) => (
+                      <option value={id} key={id}>
+                        {label}
+                      </option>
+                    ))}
+                  </Select>
+                );
+              } else if (
+                field.type === "text" ||
+                field.type === "password" ||
+                field.type === "email"
+              ) {
+                return <TextField {...field} key={field.id} />;
+              } else {
+                throw new Error("Format not supported");
+              }
+            })}
             <div className="mb-3">
               <button
                 className="btn btn-primary"

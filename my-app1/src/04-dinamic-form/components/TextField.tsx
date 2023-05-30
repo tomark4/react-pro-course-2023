@@ -4,7 +4,7 @@ interface Props {
   name: string;
   id?: string;
   label?: string;
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | string;
   placeholder?: string;
   [x: string]: any;
 }
@@ -20,7 +20,9 @@ const TextField = ({ name, id, type, label, placeholder, ...rest }: Props) => {
         placeholder={placeholder}
         {...rest}
         {...field}
-        className={`form-control ${meta.error && meta.touched && "has-error"}`}
+        className={`form-control ${
+          meta.error && meta.touched ? "has-error" : ""
+        }`}
       />
       <ErrorMessage
         className="invalid-feedback d-block"
